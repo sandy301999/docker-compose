@@ -1,0 +1,85 @@
+version: "3.8"
+
+services:
+  vprodb1:
+    build:
+      context: /root/db
+      dockerfile: Dockerfile
+    image: vprocontainers/vprofiledb
+    container_name: vprodb1
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: vprodbpass
+      MYSQL_DATABASE: accounts
+    ports:
+      - "3307:3306"
+    volumes:
+      - vprodb1data:/var/lib/mysql
+      - /root/db/my1.cnf:/etc/mysql/conf.d/my.cnf
+      - /root/db/init-master.sql:/docker-entrypoint-initdb.d/init-repl.sql
+
+  vprodb2:
+    build:
+      context: /root/db
+      dockerfile: Dockerfile
+    image: vprocontainers/vprofiledb
+    container_name: vprodb2
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: vprodbpass
+      MYSQL_DATABASE: accounts
+    ports:
+      - "3308:3306"
+    volumes:
+      - vprodb2data:/var/lib/mysql
+      - /root/db/my2.cnf:/etc/mysql/conf.d/my.cnf
+      - /root/db/db2/init-slave.sql:/docker-entrypoint-initdb.d/init-repl.sql
+    depends_on:
+      - vprodb1
+
+  vprocache01:
+    image: memcached
+    container_name: vprocache01
+    ports:
+      - "11211:11211"
+
+  vpromq01:
+    image: rabbitmq
+    container_name: vpromq01
+    ports:
+      - "5672:5672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+
+  vproapp:
+    build:
+      context: /root/app
+    image: vprocontainers/vprofileapp
+    container_name: vproapp
+    ports:
+      - "8080:8080"
+    volumes:
+      - vproappdata:/usr/local/tomcat/webapps
+    depends_on:
+      - vprodb1
+      - vprocache01
+      - vpromq01
+
+  vproweb:
+    build:
+      context: /root/nginx
+    image: vprocontainers/vprofileweb
+    container_name: vproweb
+    ports:
+      - "80:80"
+    depends_on:
+      - vproapp
+      - vprodb1
+      - vprocache01
+      - vpromq01
+
+volumes:
+  vprodb1data:
+  vprodb2data:
+  vproappdata:
