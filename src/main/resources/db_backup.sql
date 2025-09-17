@@ -78,7 +78,11 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (4,'admin_vp','admin_vp@vp.com',NULL,NULL,'28/03/1994','M Khan','R Khan','male','unMarried','Ameerpet,Hyderabad','Ameerpet,Hyderabad','Software Engineer','Software Engineer','Java HTML CSS ','9960862529','9960862529','India','english','2 ','$2a$11$enwqb8vLp6TNRuSQwuJs9.p.0RsBVmvJYAsLq.g883Ly87YCiaxKi'),(5,'admin_vp2','admin@visualpathit.com',NULL,NULL,'28/03/1994','M Khan','R Khan','male','unMarried','Ameerpet,Hyderabad','Ameerpet,Hyderabad','Software Engineer','Software Engineer','Java HTML CSS ','9960862529','9960862529','India','english','12','$2a$11$Yflhl432jiLZQqr0DBcQKuJ.bxhZlR1YDFilK3SKeFX/WIulEsW2q'),(6,'admin_vp3','admin@visualpathit.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'$2a$11$PDx0mSd5lf22zP4ulURwp.jVP.AG.wUO94MY72j1FRogs/FcadNCa');
+INSERT INTO `user` VALUES 
+(4,'admin_vp','admin_vp@vp.com',NULL,NULL,'28/03/1994','M Khan','R Khan','male','unMarried','Ameerpet,Hyderabad','Ameerpet,Hyderabad','Software Engineer','Software Engineer','Java HTML CSS ','9960862529','9960862529','India','english','2 ','$2a$11$enwqb8vLp6TNRuSQwuJs9.p.0RsBVmvJYAsLq.g883Ly87YCiaxKi'),
+(5,'admin_vp2','admin@visualpathit.com',NULL,NULL,'28/03/1994','M Khan','R Khan','male','unMarried','Ameerpet,Hyderabad','Ameerpet,Hyderabad','Software Engineer','Software Engineer','Java HTML CSS ','9960862529','9960862529','India','english','12','$2a$11$Yflhl432jiLZQqr0DBcQKuJ.bxhZlR1YDFilK3SKeFX/WIulEsW2q'),
+(6,'admin_vp3','admin@visualpathit.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'$2a$11$PDx0mSd5lf22zP4ulURwp.jVP.AG.wUO94MY72j1FRogs/FcadNCa'),
+(7,'sandy','sandy@example.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'$2a$10$KqBArf6nNh7lJdHXVvMk/OcAjVh9BYjTvRNYYWBtu6YKyW0Tio1d6');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -105,10 +109,13 @@ CREATE TABLE `user_role` (
 
 LOCK TABLES `user_role` WRITE;
 /*!40000 ALTER TABLE `user_role` DISABLE KEYS */;
-INSERT INTO `user_role` VALUES (4,1),(5,1),(6,1);
+INSERT INTO `user_role` VALUES 
+(4,1),
+(5,1),
+(6,1),
+(7,1);
 /*!40000 ALTER TABLE `user_role` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
